@@ -26,7 +26,7 @@ class UserController {
   async delete(req, res) {
     const { userId } = req.params;
     const deletedUser = await _userService.delete(userId);
-    return res.send(deletedUser);
+    return res.send("User deleted");
   }
 }
 

@@ -51,7 +51,7 @@ class BaseService{
             throw error;
         }
         
-        const currentEntity = await this.repository.get(id);
+        return await this.repository.delete(id);
     }
 
 }

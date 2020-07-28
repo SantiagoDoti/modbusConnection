@@ -5,11 +5,13 @@ const { CACHE_TME } = require('../helpers');
 module.exports = function({ModbusController}){
     const router = Router();
 
-    router.get("/:modbusId", ModbusController.get);
-    router.get("", [AuthMiddleware, ParseIntMiddleware, CacheMiddleware(CACHE_TME.ONE_HOUR)], ModbusController.getAll);
-    router.post("", ModbusController.create);
-    router.patch("/:modbusId", ModbusController.update);
-    router.delete("/:modbusId", ModbusController.delete);
+
+    // CacheMiddleware(CACHE_TME.ONE_HOUR)
+    router.get("/:modbusId", AuthMiddleware, ModbusController.get);
+    router.get("", [AuthMiddleware, ParseIntMiddleware], ModbusController.getAll);
+    router.post("", AuthMiddleware, ModbusController.create);
+    router.patch("/:modbusId", AuthMiddleware, ModbusController.update);
+    router.delete("/:modbusId", AuthMiddleware, ModbusController.delete);
 
     return router;
 };

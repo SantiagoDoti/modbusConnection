@@ -29,10 +29,4 @@ const ModbusSchema = new Schema({
     }
 });
 
-//ModbusSchema.pre('save', async function(next){
-//   const modbus = this;
-//
-//    if(!modbus.isModified("discreteInput"))
-//})
-
 module.exports = mongoose.model("modbus", ModbusSchema);
